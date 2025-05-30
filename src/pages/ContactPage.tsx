@@ -212,7 +212,7 @@ const ContactPage: React.FC = () => {
 
               <div className="text-center">
                 <a
-                  href="#booking"
+                  href="https://calendar.app.google/CyWZN6SbAzm2T58p9" target="_blank" rel="noopener noreferrer"
                   className="btn btn-primary inline-flex items-center"
                 >
                   Book Now <Calendar size={18} className="ml-2" />

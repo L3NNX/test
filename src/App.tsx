@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/layout/Header';
@@ -9,6 +9,8 @@ import UniversitiesPage from './pages/UniversitiesPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import AuthPage from './pages/AuthPage';
+import DashboardPage from './pages/DashboardPage';
+import PrivateRoute from './components/auth/PrivateRoute';
 
 function App() {
   return (
@@ -24,6 +26,14 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/auth" element={<AuthPage />} />
+              <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <DashboardPage />
+                </PrivateRoute>
+              }
+            />
         </Routes>
       </main>
       <Footer />

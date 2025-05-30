@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, User, AlertCircle } from 'lucide-react';
+import { Mail, Lock, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface SignUpFormData {
@@ -21,7 +21,7 @@ const SignUpForm: React.FC = () => {
       setError('');
       await signUp(data.email, data.password);
       navigate('/');
-    } catch (err) {
+    } catch  {
       setError('Failed to create an account. Please try again.');
     }
   };

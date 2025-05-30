@@ -71,3 +71,56 @@ export interface Document {
   url: string;
   uploadedAt: string;
 }
+
+
+export interface Review {
+  id: string;
+  userId: string;
+  consultationId: string;
+  rating: number;
+  content: string;
+  images: {
+    url: string;
+    caption: string;
+  }[];
+  verifiedPurchase: boolean;
+  helpfulVotes: number;
+  notHelpfulVotes: number;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface DashboardStats {
+  totalReviews: number;
+  averageRating: number;
+  reviewsByRating: {
+    [key: number]: number;
+  };
+  recentReviews: Review[];
+  monthlyReviews: {
+    month: string;
+    count: number;
+    averageRating: number;
+  }[];
+}
+
+export interface ApiResponse<T> {
+  data: T;
+  message?: string;
+  error?: string;
+}
+
+export interface ReviewFormData {
+  consultationId: string;
+  rating: number;
+  content: string;
+  images?: FileList;
+}
+
+export interface ReviewFilters {
+  rating?: number;
+  sort?: 'newest' | 'helpful' | 'rating';
+  page?: number;
+  limit?: number;
+}

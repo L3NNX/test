@@ -6,6 +6,8 @@ import inquiryRoutes from './routes/inquiryRoutes.js';
 import consultationRoutes from './routes/consultationRoutes.js';
 import universityRoutes from './routes/universityRoutes.js';
 import testimonialRoutes from './routes/testimonialRoutes.js';
+import dashboardRoutes from './routes/dashboardRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -28,7 +30,8 @@ app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/consultations', consultationRoutes);
 app.use('/api/universities', universityRoutes);
 app.use('/api/testimonials', testimonialRoutes);
-
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/reviews', reviewRoutes);
 // Default route
 app.get('/', (req, res) => {
   res.send('AussieEdu API is running');
