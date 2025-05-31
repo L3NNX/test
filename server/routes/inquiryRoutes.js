@@ -13,6 +13,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get inquiries for a specific user
+router.get('/user/:email', async (req, res) => {
+  try {
+    const inquiries = await Inquiry.find({ email: req.params.email }).sort({ createdAt: -1 });
+    res.json(inquiries);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Get a specific inquiry
 router.get('/:id', async (req, res) => {
   try {
@@ -28,7 +38,10 @@ router.get('/:id', async (req, res) => {
 
 // Create a new inquiry
 router.post('/', async (req, res) => {
-  const inquiry = new Inquiry(req.body);
+  const inquiry = new Inquiry({
+    ...req.body,
+    createdAt: new Date()
+  });
   try {
     const newInquiry = await inquiry.save();
     res.status(201).json(newInquiry);

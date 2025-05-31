@@ -2,20 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Loader, AlertCircle } from 'lucide-react';
 import axios from 'axios';
 import { Inquiry } from '../types';
+import { useAuth } from '../contexts/AuthContext';
 
 const NotificationsPage: React.FC = () => {
+  const { user } = useAuth();
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchInquiries();
-  }, []);
+    if (user) {
+      fetchInquiries();
+    }
+  }, [user]);
 
   const fetchInquiries = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/inquiries');
+      const response = await axios.get(`/api/inquiries/user/${user?.email}`);
       setInquiries(response.data);
     } catch (error) {
       console.error('Error fetching inquiries:', error);
@@ -48,7 +52,7 @@ const NotificationsPage: React.FC = () => {
       <div className="container-custom py-8">
         <div className="flex items-center mb-6">
           <Mail size={24} className="text-primary-600 mr-3" />
-          <h1 className="text-2xl font-bold">Contact Form Submissions</h1>
+          <h1 className="text-2xl font-bold">Your Contact Form Submissions</h1>
         </div>
 
         <div className="bg-white rounded-lg shadow overflow-hidden">
