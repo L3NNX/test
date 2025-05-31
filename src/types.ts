@@ -32,6 +32,7 @@ export interface Inquiry {
   message: string;
   preferredUniversity?: string;
   preferredCourse?: string;
+  createdAt: string;
 }
 
 export interface ConsultationBooking {
@@ -71,7 +72,6 @@ export interface Document {
   url: string;
   uploadedAt: string;
 }
-
 
 export interface Review {
   id: string;
